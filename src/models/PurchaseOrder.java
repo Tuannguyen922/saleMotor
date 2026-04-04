@@ -1,4 +1,5 @@
 package models;
+import java.sql.Date;
 
 enum Status {
     IN_STOCK, SOLD //các giá trị cố định của kiểu status
