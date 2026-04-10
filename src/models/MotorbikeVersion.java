@@ -6,8 +6,10 @@ public class MotorbikeVersion extends MotorbikeModel {
     private String engineCapacity;// phân khối
     private String price;// giá
     private MotorbikeModel model;
-    public MotorbikeVersion(String color,String engineCapacity,String price, MotorbikeModel model){
+    private int versionID;
+    public MotorbikeVersion( int vid ,String color,String engineCapacity,String price, MotorbikeModel model){
         super(model.getmodelId(),model.getmodelname(),model.getbrand(),model.gettype(),model.getdescription());
+        this.versionID = vid;
         this.color=color;
         this.engineCapacity=engineCapacity;
         this.price=price;
@@ -28,6 +30,13 @@ public class MotorbikeVersion extends MotorbikeModel {
     }
     public void setModel(MotorbikeModel model) {
         this.model = model;
+    }
+
+    public void setVersionID(int versionID) {
+        this.versionID = versionID;
+    }
+    public int getVersionID() {
+        return versionID;
     }
 
     public void showInforModels() {
