@@ -2,29 +2,21 @@ package models;
 import java.time.LocalDate;
 import java.sql.Date;
 
-public class SaleOrderDetail {
-    private int orderId; // Lưu ID của hóa đơn chứa nó
+public class SaleOrderDetail extends SaleOrder {
     private String vin;
     private int salePrice;
 
-    public SaleOrderDetail(int orderId, String vin, int salePrice) {
-        this.orderId = orderId;
+    public SaleOrderDetail(int cusId, String vin, int salePrice) {
+        super(cusId, LocalDate.now()); // Call the constructor of the parent class
         this.vin = vin;
         this.salePrice = salePrice;
     }
 
-    public int getOrderId() {
-        return orderId;
-    }
     public String getVin() {
         return vin;
     }
     public int getSalePrice() {
         return salePrice;
-    }
-    
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
     }
     public void setVin(String vin) {
         this.vin = vin;
@@ -32,4 +24,5 @@ public class SaleOrderDetail {
     public void setSalePrice(int salePrice) {
         this.salePrice = salePrice;
     }
+
 }
