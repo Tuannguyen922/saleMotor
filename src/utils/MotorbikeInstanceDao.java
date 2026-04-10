@@ -27,15 +27,16 @@ public class MotorbikeInstanceDao implements DAOInterface<MotorbikeInstance> {
         try {
             Connection con = JDBCUtil.getConnection();
             // Chỉ insert đúng các cột cần thiết
-            String sql = "INSERT INTO motorbike_instances (vin, engine_number, version_id, status, import_date) VALUES (?, ?, ?, 'IN_STOCK', ?)";
+            String sql = "INSERT INTO motorbike_instances (version_id, vin, engine_number, status, import_date) VALUES (?, ?, ?, 'IN_STOCK', ?)";
             
             PreparedStatement st = con.prepareStatement(sql);
-            st.setString(1, t.getVin());
-            st.setString(2, t.getEngineNumber());
+            st.setInt(1, t.getVersion().getVersionID());
+            st.setString(2, t.getVin());
+            st.setString(3, t.getEngineNumber());
             
             // Lấy version_id từ đối tượng model cha của MotorbikeVersion
             // Vì MotorbikeVersion kế thừa MotorbikeModel, cậu dùng getmodelId() nhé
-            st.setInt(3, t.getVersion().getmodelId()); 
+            //st.setInt(3, t.getVersion().getmodelId()); 
             
             st.setDate(4, Date.valueOf(t.getImportDate()));
 
@@ -90,6 +91,7 @@ public class MotorbikeInstanceDao implements DAOInterface<MotorbikeInstance> {
 
             // 2. Tạo Version
             MotorbikeVersion version = new MotorbikeVersion(
+                rs.getInt("version_id"),
                 rs.getString("color"),
                 rs.getString("engine_capacity"),
                 rs.getString("price"),
@@ -135,6 +137,10 @@ public class MotorbikeInstanceDao implements DAOInterface<MotorbikeInstance> {
                 rs.getString("brand"), "", ""
             );
             MotorbikeVersion version = new MotorbikeVersion(
+<<<<<<< HEAD
+=======
+                rs.getInt("version_id"),
+>>>>>>> d1a30f83f5b03b137433901047a43da62d47d1e9
                 rs.getString("color"), rs.getString("engine_capacity"),
                 rs.getString("price"), model
             );

@@ -24,7 +24,7 @@ CREATE TABLE motorbike_models (
 
 -- Lưu các phiên bản màu sắc, phân khối của mẫu xe đó
 CREATE TABLE motorbike_versions (
-    version_id SERIAL PRIMARY KEY,
+    version_id INT PRIMARY KEY,
     model_id INT REFERENCES motorbike_models(model_id) ON DELETE CASCADE,
     color VARCHAR(30),
     engine_capacity VARCHAR(20),
@@ -47,7 +47,7 @@ CREATE TABLE purchase_orders (
 CREATE TABLE motorbike_instances (
     vin VARCHAR(50) PRIMARY KEY,
     engine_number VARCHAR(50) UNIQUE,
-    version_id INT REFERENCES motorbike_versions(version_id),
+    version_id INT ,
     import_date DATE DEFAULT CURRENT_DATE,
     status VARCHAR(20) DEFAULT 'IN_STOCK' -- Để checkStatusWareHouse lọc
 );
